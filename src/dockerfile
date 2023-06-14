@@ -13,5 +13,4 @@ RUN ./gradlew build
 
 EXPOSE 8080
 
-
 CMD ["java", "-jar", "todolist.jar"]

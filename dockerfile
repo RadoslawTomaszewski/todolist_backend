@@ -1,5 +1,5 @@
 
-FROM adopt openjdk:11-jdk-hotspot
+FROM adoptopenjdk:11-jdk-hotspot
 
 
 WORKDIR /app

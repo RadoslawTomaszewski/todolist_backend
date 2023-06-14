@@ -1,15 +1,12 @@
-#Build stage
-
-FROM gradle:latest AS BUILD
-WORKDIR /usr/app/
-COPY . .
-RUN gradle build
-
-#Package stage
-FROM openjdk:latest
-ENV JAR_NAME=app.jar
-ENV APP_HOME=/usr/app/
+FROM gradle:jdk11-alpine AS BUILD_STAGE
+COPY --chown=gradle:gradle . /home/gradle
+RUN gradle build || return 1
+FROM openjdk:11.0.11-jre
+ENV ARTIFACT_NAME=app.jar
+ENV APP_HOME=/app
+COPY --from=BUILD_STAGE /home/gradle/build/libs/$ARTIFACT_NAME $APP_HOME/
 WORKDIR $APP_HOME
-COPY --from=BUILD $APP_HOME .
-EXPOSE 8080
-ENTRYPOINT exec java -jar $APP_HOME/build/libs/$JAR_NAME
+RUN groupadd -r -g 1000 user && useradd -r -g user -u 1000 user
+RUN chown -R user:user /app
+USER user
+ENTRYPOINT exec java -jar ${ARTIFACT_NAME}_NAME

@@ -3,8 +3,8 @@ package com.todolist.todolist.controller;
 import com.todolist.todolist.exception.TodoNotFoundException;
 import com.todolist.todolist.model.Todo;
 import com.todolist.todolist.repository.TodoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 

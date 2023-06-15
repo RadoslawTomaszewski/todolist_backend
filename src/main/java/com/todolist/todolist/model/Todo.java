@@ -15,7 +15,7 @@ public class Todo {
     private Long id;
     private boolean isCompleted;
     private String name;
-    @JsonFormat(pattern="yyyy-MM-ddTHH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime deadline;
 
 

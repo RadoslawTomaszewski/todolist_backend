@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://radoslawtomaszewski.github.io")
+@CrossOrigin("*")
 public class TodoController {
 
 
